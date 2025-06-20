@@ -3,6 +3,7 @@ class Configuration:
     instance: "Configuration | None" = None
     configs: dict[str, str]
     def __init__(self):
+        self.configs = {}
         print(f'instance created!')
 
 
