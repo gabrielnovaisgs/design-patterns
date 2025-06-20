@@ -11,35 +11,35 @@ class Notification(ABC):
     def send(self, message: str) -> None:
         pass
 
-class EmailNotifiction(Notification):
+class EmailNotification(Notification):
     def send(self, message: str):
         print(f"Message: {message} was send by email") 
 
-class SMSNotifiction(Notification):
+class SMSNotification(Notification):
     def send(self, message: str):
         print(f"Message: {message} was send by sms") 
 
-class PushNotifiction(Notification):
+class PushNotification(Notification):
     def send(self, message: str):
         print(f"Message: {message} was send by push")
 
-class GeneralNotifiction(Notification):
+class GeneralNotification(Notification):
     def send(self, message: str):
         print(f"Message: {message} was send by General")  
 
 class NotificationFactory:
     @classmethod
-    def create(cls, notificationType: int) -> Notification:
-        if(notificationType == NotificationType.EMAIL.value):
-            return EmailNotifiction()
+    def create(cls, notificationType: NotificationType) -> Notification:
+        if(notificationType == NotificationType.EMAIL):
+            return EmailNotification()
         
-        elif(notificationType == NotificationType.SMS.value):
-            return SMSNotifiction()
+        elif(notificationType == NotificationType.SMS):
+            return SMSNotification()
         
-        elif(notificationType == NotificationType.PUSH.value):
-            return PushNotifiction()
+        elif(notificationType == NotificationType.PUSH):
+            return PushNotification()
     
-        return GeneralNotifiction()
+        return GeneralNotification()
 
 def main():
     print("Digite  sua mensgem: ")             
@@ -50,7 +50,7 @@ def main():
         2 - sms
         3 - push""")
 
-    sender = int(input())
+    sender = NotificationType(int(input()))
 
     notification = NotificationFactory.create(sender)
     notification.send(message)
