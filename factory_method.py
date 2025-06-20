@@ -41,17 +41,18 @@ class NotificationFactory:
     
         return GeneralNotifiction()
 
-print("Digite  sua mensgem: ")             
-message = input()
+def main():
+    print("Digite  sua mensgem: ")             
+    message = input()
 
-print("""Como gostaria de envia-la?
-      1 - email
-      2 - sms
-      3 - push""")
-sender = int(input())
+    print("""Como gostaria de envia-la?
+        1 - email
+        2 - sms
+        3 - push""")
 
+    sender = int(input())
 
+    notification = NotificationFactory.create(sender)
+    notification.send(message)
 
-notification = NotificationFactory.create(sender)
-
-notification.send(message)
+main()
